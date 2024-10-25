@@ -495,42 +495,6 @@ export interface PluginUsersPermissionsUser
   };
 }
 
-export interface ApiFooterFooter extends Struct.CollectionTypeSchema {
-  collectionName: 'footers';
-  info: {
-    singularName: 'footer';
-    pluralName: 'footers';
-    displayName: 'Footer';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    facebook: Schema.Attribute.String;
-    twitter: Schema.Attribute.String;
-    acceuil: Schema.Attribute.String;
-    nouveaute: Schema.Attribute.String;
-    contact: Schema.Attribute.String;
-    telephone: Schema.Attribute.BigInteger;
-    email: Schema.Attribute.Email;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::footer.footer'
-    > &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   collectionName: 'home_pages';
   info: {
@@ -990,7 +954,6 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::footer.footer': ApiFooterFooter;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::produit.produit': ApiProduitProduit;
       'admin::permission': AdminPermission;
