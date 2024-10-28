@@ -509,7 +509,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   attributes: {
     title: Schema.Attribute.String;
     description: Schema.Attribute.Text;
-    blocks: Schema.Attribute.DynamicZone<['components.link']>;
+    blocks: Schema.Attribute.DynamicZone<['layout.hero']>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

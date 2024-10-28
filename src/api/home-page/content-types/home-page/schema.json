@@ -21,7 +21,7 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "components.link"
+        "layout.hero"
       ]
     }
   }
