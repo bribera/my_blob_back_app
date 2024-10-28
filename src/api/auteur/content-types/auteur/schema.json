@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "auteurs",
+  "info": {
+    "singularName": "auteur",
+    "pluralName": "auteurs",
+    "displayName": "Auteur"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "role"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
