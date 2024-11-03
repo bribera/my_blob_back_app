@@ -28,7 +28,7 @@
       "type": "uid",
       "targetField": "title"
     },
-    "cover": {
+    "image": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -51,6 +51,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::auteur.auteur"
+    },
+    "type": {
+      "type": "string"
     }
   }
 }

@@ -512,13 +512,14 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     date: Schema.Attribute.DateTime;
     video: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'>;
-    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     description: Schema.Attribute.Blocks;
     categorie: Schema.Attribute.Relation<
       'oneToOne',
       'api::categorie.categorie'
     >;
     auteur: Schema.Attribute.Relation<'oneToOne', 'api::auteur.auteur'>;
+    type: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -595,6 +596,38 @@ export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContactContact extends Struct.CollectionTypeSchema {
+  collectionName: 'contacts';
+  info: {
+    singularName: 'contact';
+    pluralName: 'contacts';
+    displayName: 'Contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    message: Schema.Attribute.Text;
+    subject: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact.contact'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   collectionName: 'home_pages';
   info: {
@@ -656,6 +689,7 @@ export interface ApiProduitProduit extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios'
     > &
       Schema.Attribute.Required;
+    slug: Schema.Attribute.UID;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -1057,6 +1091,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::auteur.auteur': ApiAuteurAuteur;
       'api::categorie.categorie': ApiCategorieCategorie;
+      'api::contact.contact': ApiContactContact;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::produit.produit': ApiProduitProduit;
       'admin::permission': AdminPermission;
